@@ -10,7 +10,7 @@ def DeconstructImage(image_path):
         image = Image.open(image_path).convert("RGB")
         img_byte_arr = io.BytesIO()
 
-        image.save(img_byte_arr, format="PNG")
+        image.save(img_byte_arr, format=ConfigParser('pillow', 'format'))
         img_byte_arr = img_byte_arr.getvalue()
 
         base64_str = base64.b64encode(img_byte_arr).decode('utf-8')

@@ -1,14 +1,16 @@
 import mysql.connector
 from mysql.connector import Error
 
+from utils.config.worker import ConfigParser
+
 def create_connection():
     try:
         connection = mysql.connector.connect(
-            host='www.example.com',
-            user='example',
-            password='example',
-            database='example_database',
-            port='3306',
+            host=ConfigParser('database', 'host'),
+            user=ConfigParser('database', 'user'),
+            password=ConfigParser('database', 'password'),
+            database=ConfigParser('database', 'database'),
+            port=ConfigParser('database', 'port')
         )
         if connection.is_connected():
             return connection

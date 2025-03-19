@@ -1,0 +1,9 @@
+database:
+  host: www.example.com
+  user: example
+  password: example
+  database: example_database
+  port: 3306
+
+pillow:
+  format: PNG

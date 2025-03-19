@@ -1,3 +1,4 @@
+from utils.config.worker import *
 from utils.database.worker import *
 from utils.database.queries import *
 from utils.pillow.worker import *
