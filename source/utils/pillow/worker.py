@@ -1,9 +1,9 @@
 import io
 import base64
-import random
 from PIL import Image
 
 from utils.database.queries import *
+from utils.transaction.worker import *
 
 def DeconstructImage(image_path):
     try:
@@ -15,14 +15,17 @@ def DeconstructImage(image_path):
 
         base64_str = base64.b64encode(img_byte_arr).decode('utf-8')
 
-        recieptUID = random.randint(0, 9000)
+        receiptUID, receiptStatus = GenerateReceiptUID()
+
+        if receiptStatus != 200:
+            raise Exception(receiptUID)
 
         filename = Image.open(image_path).filename.split('/')[-1]
 
-        response, status = insert_image_data(recieptUID, filename, base64_str)
+        response, status = insert_image_data(receiptUID, filename, base64_str)
 
         if status == 200:
-            return recieptUID, 200
+            return receiptUID, 200
         
         else:
             raise Exception(response)
@@ -30,11 +33,9 @@ def DeconstructImage(image_path):
     except Exception as error:
         return f"[DeconstructImage] {error}", 500
 
-def RetrieveImage(recieptUID):
+def RetrieveImage(receiptUID):
     try:
-        base64_str = retrieve_image_data(recieptUID)[0][3]
-
-        print(base64_str)
+        base64_str = retrieve_image_data(receiptUID)[0][3]
 
         image = Image.open(io.BytesIO(base64.b64decode(base64_str)))
 
