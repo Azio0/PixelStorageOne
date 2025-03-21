@@ -161,6 +161,3 @@ cython_debug/
 
 # VS Code files
 .vscode
-
-# Ziparchive Worker files
-workerbin
