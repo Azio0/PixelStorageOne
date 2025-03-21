@@ -39,18 +39,9 @@ def RetrieveZipFile(receiptUID):
 
         if status != 200:
             raise Exception(response)
+        
+        base64_encoded_zipdata = response[0][3]
 
-        decoded_binary = base64.b64decode(response[0][3])
-
-        zip_path = f"utils/ziparchive/workerbin/{receiptUID}.zip"
-        with open(zip_path, 'wb+') as file:
-            try:
-                file.write(decoded_binary)
-
-            except Exception as error:
-                file.close()
-                raise Exception(f"[RetrieveZipFile] {error}")
-
-        return zip_path, 200
+        return base64_encoded_zipdata, 200
     except Exception as error:
         return f"[RetrieveZipFile] {error}", 500
