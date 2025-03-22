@@ -6,6 +6,19 @@ from utils.transaction.worker import *
 from utils.ziparchive.worker import *
 
 class PixelStorageOne:
+    class setup:
+        def database():
+            try:
+                response, status = first_setup()
+
+                if status != 200:
+                    raise Exception(f"Error {response}")
+                
+                return response, status
+                
+            except Exception as error:
+                return error, 500
+
     class deconstruct:
         def Image(image_path):
             try:
