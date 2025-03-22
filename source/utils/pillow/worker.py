@@ -7,7 +7,7 @@ from utils.transaction.worker import *
 
 def DeconstructImage(image_path):
     try:
-        image = Image.open(image_path).convert("RGB")
+        image = Image.open(image_path).convert(ConfigParser('pillow', 'color'))
         img_byte_arr = io.BytesIO()
 
         image.save(img_byte_arr, format=ConfigParser('pillow', 'format'))
