@@ -1,5 +1,20 @@
 from utils.database.worker import *
 
+def first_setup():
+    try:
+        response, status = create_image_table()
+        if status != 200:
+            raise Exception("Unable to create image table")
+        
+        response, status = create_zip_table()
+        if status != 200:
+            raise Exception("Unable to create zip table")
+        
+        return "All tables created", 200
+        
+    except Exception as error:
+        return f"[first_setup] {error}", 500
+
 def create_image_table():
     try:
         connection = create_connection()

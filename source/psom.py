@@ -55,7 +55,3 @@ class PixelStorageOne:
             
             except Exception as error:
                 return error, 500
-
-if __name__ == "__main__":
-    create_image_table()
-    create_zip_table()
