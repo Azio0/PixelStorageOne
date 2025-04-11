@@ -1,6 +1,6 @@
 # PixelStorageOne
 
-PixelStorageOne is a utility for deconstructing and retrieving images and zip files. It provides a simple interface to store and retrieve binary data from a MySQL database, allowing the content to be easily accessed from another location, service or recalled on demand.
+**PixelStorageOne** is an open-source utility for deconstructing and retrieving images and zip files. It provides a simple interface to store and retrieve binary data from a MySQL database, allowing the content to be easily accessed from another location, service or recalled on demand.
 
 This can be used to handle storage for website images, file upload storage and more.
 
